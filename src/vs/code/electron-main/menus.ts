@@ -370,6 +370,7 @@ export class VSCodeMenu {
 		const snippetsSettings = this.createMenuItem(nls.localize({ key: 'miOpenSnippets', comment: ['&& denotes a mnemonic'] }, "User &&Snippets"), 'workbench.action.openSnippets');
 		const colorThemeSelection = this.createMenuItem(nls.localize({ key: 'miSelectColorTheme', comment: ['&& denotes a mnemonic'] }, "&&Color Theme"), 'workbench.action.selectTheme');
 		const iconThemeSelection = this.createMenuItem(nls.localize({ key: 'miSelectIconTheme', comment: ['&& denotes a mnemonic'] }, "File &&Icon Theme"), 'workbench.action.selectIconTheme');
+		const ftpSettings = this.createMenuItem(nls.localize({ key: 'miOpenFtpSettings', comment: ['&& denotes a mnemonic'] }, "&&FTP Settings"), 'workbench.action.ftp.openOrCreateFtpSettings');
 
 		const preferencesMenu = new Menu();
 		preferencesMenu.append(userSettings);
@@ -381,6 +382,8 @@ export class VSCodeMenu {
 		preferencesMenu.append(__separator__());
 		preferencesMenu.append(colorThemeSelection);
 		preferencesMenu.append(iconThemeSelection);
+		preferencesMenu.append(__separator__());
+		preferencesMenu.append(ftpSettings);
 
 		return new MenuItem({ label: mnemonicLabel(nls.localize({ key: 'miPreferences', comment: ['&& denotes a mnemonic'] }, "&&Preferences")), submenu: preferencesMenu });
 	}
@@ -549,6 +552,8 @@ export class VSCodeMenu {
 		const zoomOut = this.createMenuItem(nls.localize({ key: 'miZoomOut', comment: ['&& denotes a mnemonic'] }, "Zoom O&&ut"), 'workbench.action.zoomOut');
 		const resetZoom = this.createMenuItem(nls.localize({ key: 'miZoomReset', comment: ['&& denotes a mnemonic'] }, "&&Reset Zoom"), 'workbench.action.zoomReset');
 
+		const ftpsites = this.createMenuItem(nls.localize({ key: 'miViewFtpSites', comment: ['&& denotes a mnemonic'] }, "&&FTP Site"), 'workbench.view.ftp');
+
 		arrays.coalesce([
 			commands,
 			__separator__(),
@@ -557,6 +562,7 @@ export class VSCodeMenu {
 			git,
 			debug,
 			extensions,
+			ftpsites,
 			__separator__(),
 			output,
 			problems,

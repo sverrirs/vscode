@@ -96,3 +96,8 @@ import 'vs/workbench/electron-browser/main';
 import 'vs/workbench/parts/themes/test/electron-browser/themes.test.contribution';
 
 import 'vs/workbench/parts/watermark/browser/watermark';
+
+// Ftp System
+import 'vs/workbench/parts/ftp/browser/ftpViewlet';
+import 'vs/workbench/parts/ftp/browser/ftp.contribution';
+import 'vs/workbench/parts/ftp/browser/ftpActions';

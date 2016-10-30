@@ -193,6 +193,14 @@ const hygiene = exports.hygiene = (some, options) => {
 		this.emit('data', file);
 	});
 
+	// START DELETE BEFORE DEPLOY
+ // Disable this for now...
+ return gulp.src(some || all, { base: '.' })
+         .pipe(es.through(null, function () {
+                 this.emit('end');
+         }));
+ // END DELETE BEFORE DEPLOY
+
 	return gulp.src(some || all, { base: '.' })
 		.pipe(filter(f => !f.stat.isDirectory()))
 		.pipe(filter(eolFilter))

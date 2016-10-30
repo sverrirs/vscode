@@ -83,6 +83,8 @@ import { IContextMenuService } from 'vs/platform/contextview/browser/contextView
 import { IEnvironmentService } from 'vs/platform/environment/common/environment';
 import { ITelemetryService } from 'vs/platform/telemetry/common/telemetry';
 import { IWindowConfiguration } from 'vs/workbench/electron-browser/common';
+import { FtpService } from 'vs/workbench/services/ftp/node/ftpService';
+import { IFtpService } from 'vs/platform/ftp/common/ftpService';
 
 export const MessagesVisibleContext = new RawContextKey<boolean>('globalMessageVisible', false);
 export const EditorsVisibleContext = new RawContextKey<boolean>('editorIsOpen', false);
@@ -451,6 +453,10 @@ export class Workbench implements IPartService {
 		Registry.as<IActionBarRegistry>(ActionBarExtensions.Actionbar).setInstantiationService(this.instantiationService);
 		Registry.as<IWorkbenchContributionsRegistry>(WorkbenchExtensions.Workbench).setInstantiationService(this.instantiationService);
 		Registry.as<IEditorRegistry>(EditorExtensions.Editors).setInstantiationService(this.instantiationService);
+
+		// Ftp Service
+		const ftpService = this.instantiationService.createInstance(FtpService);
+		serviceCollection.set(IFtpService, ftpService);
 	}
 
 	private initSettings(): void {

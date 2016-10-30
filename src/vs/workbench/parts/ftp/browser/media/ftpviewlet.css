@@ -1,0 +1,143 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Sverrir Sigmundarson. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/* --- Explorer viewlet --- */
+.ftp-viewlet {
+	height: 100%;
+}
+
+.ftp-viewlet .ftp-item,
+.ftp-viewlet .open-editor,
+.ftp-viewlet .editor-group {
+	height: 22px;
+	line-height: 22px;
+}
+
+.ftp-viewlet .ftp-item {
+	display: flex; /* this helps showing the overflow ellipsis (...) even though we use display:inline-block for the labels */
+	flex-wrap: nowrap;
+}
+
+.ftp-viewlet .ftp-item > a,
+.ftp-viewlet .open-editor,
+.ftp-viewlet .editor-group {
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.ftp-viewlet .ftp-item,
+.ftp-viewlet .ftp-item .monaco-inputbox {
+	flex: 1;
+}
+
+.ftp-viewlet .ftp-open-editors .monaco-tree .monaco-tree-row > .content {
+	display: flex;
+}
+
+.ftp-viewlet .ftp-open-editors .monaco-tree .monaco-tree-row > .content > .monaco-action-bar {
+	visibility: hidden;
+}
+
+.ftp-viewlet .ftp-open-editors .monaco-tree .monaco-tree-row:hover > .content .monaco-action-bar,
+.ftp-viewlet .ftp-open-editors .monaco-tree.focused .monaco-tree-row.focused > .content .monaco-action-bar,
+.ftp-viewlet .ftp-open-editors .monaco-tree .monaco-tree-row > .content.dirty > .monaco-action-bar {
+	visibility: visible;
+}
+
+.ftp-viewlet .ftp-open-editors .monaco-tree .monaco-tree-row > .content .monaco-action-bar .action-label {
+	display: block;
+}
+
+.ftp-viewlet .ftp-open-editors .monaco-tree .monaco-tree-row > .content .monaco-action-bar .close-editor-action {
+	width: 8px;
+	height: 22px;
+}
+
+.ftp-viewlet .ftp-open-editors .monaco-tree .monaco-tree-row > .content .monaco-action-bar .action-close-all-files,
+.ftp-viewlet .ftp-open-editors .monaco-tree .monaco-tree-row > .content .monaco-action-bar .save-all {
+	width: 23px;
+	height: 22px;
+}
+
+.ftp-viewlet .ftp-open-editors .monaco-tree .monaco-tree-row > .content > .open-editor {
+	flex: 1;
+	margin-left: 1px;
+}
+
+.ftp-viewlet .ftp-open-editors .monaco-tree .monaco-tree-row > .content > .editor-group {
+	flex: 1;
+}
+
+.ftp-viewlet .monaco-count-badge {
+	padding: 1px 6px;
+	margin-left: 6px;
+	border-radius: 0; /* goes better when ellipsis shows up on narrow sidebar */
+}
+
+.ftp-viewlet .ftp-empty-view, .ftp-viewlet .ftp-empty-view-header {
+	padding: 0 20px 0 20px;
+}
+
+.ftp-viewlet .ftp-item .monaco-inputbox {
+	width: 100%;
+	line-height: normal;
+}
+
+.monaco-workbench.linux .ftp-viewlet .ftp-item .monaco-inputbox,
+.monaco-workbench.mac .ftp-viewlet .ftp-item .monaco-inputbox {
+	height: 22px;
+}
+
+.ftp-viewlet .ftp-item .monaco-inputbox.idle {
+	border: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.ftp-viewlet .ftp-item .monaco-inputbox > .wrapper > .input {
+	padding: 1px 2px;
+}
+
+.monaco-workbench.linux .ftp-viewlet .ftp-item .monaco-inputbox > .wrapper > .input,
+.monaco-workbench.mac .ftp-viewlet .ftp-item .monaco-inputbox > .wrapper > .input {
+	padding: 0;
+	height: 20px;
+}
+
+.ftp-viewlet .ftp-open-editors .monaco-tree .monaco-tree-row .editor-group {
+	font-size: 11px;
+	font-weight: bold;
+	text-transform: uppercase;
+	cursor: default;
+}
+
+/* Bold font style does not go well with CJK fonts */
+.ftp-viewlet:lang(zh-Hans) .ftp-open-editors .monaco-tree .monaco-tree-row .editor-group,
+.ftp-viewlet:lang(zh-Hant) .ftp-open-editors .monaco-tree .monaco-tree-row .editor-group,
+.ftp-viewlet:lang(ja) .ftp-open-editors .monaco-tree .monaco-tree-row .editor-group,
+.ftp-viewlet:lang(ko) .ftp-open-editors .monaco-tree .monaco-tree-row .editor-group { font-weight: normal; }
+
+/* Disable tree twistie */
+.ftp-viewlet .ftp-open-editors > .monaco-tree .monaco-tree-rows > .monaco-tree-row > .content:after,
+.ftp-viewlet .ftp-open-editors > .monaco-tree .monaco-tree-rows > .monaco-tree-row > .content:before {
+	border: none;
+}
+
+
+/* High Contrast Theming */
+.hc-black .monaco-workbench .ftp-viewlet .ftp-item,
+.hc-black .monaco-workbench .ftp-viewlet .open-editor,
+.hc-black .monaco-workbench .ftp-viewlet .editor-group {
+	line-height: 20px;
+}
+
+.hc-black .monaco-workbench .ftp-viewlet .ftp-item .monaco-inputbox > .wrapper > .input:focus {
+	outline-offset: -2px !important;
+	outline: 1px solid #f38518 !important;
+	padding-left: 2px; /* push text by the width of the outline offset to prevent overlaying */
+}
+
+.hc-black .monaco-workbench .ftp-viewlet .ftp-item .monaco-inputbox.synthetic-focus {
+	outline: none !important;
+	border: none;
+}
