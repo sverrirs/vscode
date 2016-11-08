@@ -6,8 +6,7 @@
 
 import URI from 'vs/base/common/uri';
 import { IEditorOptions } from 'vs/editor/common/editorCommon';
-import { EncodingMode, EditorInput, IFileEditorInput, IWorkbenchEditorConfiguration } from 'vs/workbench/common/editor';
-import { IFilesConfiguration } from 'vs/platform/files/common/files';
+import { EncodingMode, IWorkbenchEditorConfiguration } from 'vs/workbench/common/editor';
 import { FileStat } from 'vs/workbench/parts/files/common/explorerViewModel';
 import { RawContextKey } from 'vs/platform/contextkey/common/contextkey';
 
@@ -18,38 +17,29 @@ export const VIEWLET_ID = 'workbench.view.ftp';
 
 export const FtpViewletVisible = new RawContextKey<boolean>('ftpViewletVisible', true);
 
+// Service config
+export interface IFtpConnectionInfo {
+		hostname: string;
 
-/*export interface IFtpFilesConfiguration extends IWorkbenchEditorConfiguration {
-	ftp: {
-		openEditors: {
-			visible: number;
-			dynamicHeight: boolean;
-		};
-		autoReveal: boolean;
-		enableDragAndDrop: boolean;
-	};
-	editor: IEditorOptions;
+		port: number;
+
+		username: string;
+
+		password: string;
+
+		remoteDir: string;
+}
+
+//configurationService.getConfiguration
+
+export interface IFtpConfiguration {
+	sites:{ [key: string]: {
+		local: string,  // local workspace path
+		remote: IFtpConnectionInfo
+	} };
 }
 
 export interface IFtpFileResource {
 	resource: URI;
 	isDirectory: boolean;
 }
-*/
-
-/**
- * Helper to get a file resource from an object.
- */
-/*export function asFtpResource(obj: any): IFtpFileResource {
-	if (obj instanceof FileStat) {
-		const stat = <FileStat>obj;
-
-		return {
-			resource: stat.resource,
-			isDirectory: stat.isDirectory
-		};
-	}
-
-	return null;
-}
-*/

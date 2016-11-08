@@ -20,13 +20,10 @@ import strings = require('vs/base/common/strings');
 import { Event, EventType as CommonEventType } from 'vs/base/common/events';
 import severity from 'vs/base/common/severity';
 import diagnostics = require('vs/base/common/diagnostics');
-import { BaseTextEditor } from 'vs/workbench/browser/parts/editor/textEditor';
 import { Action, IAction } from 'vs/base/common/actions';
 import { IMessageService, Severity, CloseAction, IMessageWithAction, IConfirmation, CancelAction} from 'vs/platform/message/common/message';
 import { IWorkspaceContextService } from 'vs/platform/workspace/common/workspace';
 import { IWorkbenchEditorService } from 'vs/workbench/services/editor/common/editorService';
-import { IEditorGroupService } from 'vs/workbench/services/group/common/groupService';
-import { IFileService, IFileOperationResult, FileOperationResult } from 'vs/platform/files/common/files';
 import { IWorkspaceConfigurationService, WORKSPACE_CONFIG_DEFAULT_PATH } from 'vs/workbench/services/configuration/common/configuration';
 import { IInstantiationService } from 'vs/platform/instantiation/common/instantiation';
 import { IEnvironmentService } from 'vs/platform/environment/common/environment';
@@ -36,12 +33,13 @@ import { SyncActionDescriptor } from 'vs/platform/actions/common/actions';
 import { StringEditorInput } from 'vs/workbench/common/editor/stringEditorInput';
 import * as path from 'path';
 import { BaseTwoEditorsAction } from 'vs/workbench/browser/actions/opensettings';
-
 import { IFileStat, IImportResult } from 'vs/platform/files/common/files';
 import { FileStat, NewStatPlaceholder } from 'vs/workbench/parts/files/common/explorerViewModel';
 import { IEventService } from 'vs/platform/event/common/event';
-import { IFtpService, IFtpServiceOptions} from 'vs/platform/ftp/common/ftpService';
 import { ITree, IHighlightEvent } from 'vs/base/parts/tree/browser/tree';
+
+import { IFtpService } from 'vs/platform/ftp/common/ftpService';
+import { IFtpConfigurationService, FTP_CONFIG_FILE } from 'vs/platform/ftp/common/ftpConfiguration';
 
 export class BaseFtpAction extends Action {
 	private _element: IFileStat;
@@ -178,7 +176,7 @@ export class OpenFtpSettingsAction extends BaseTwoEditorsAction {
 			'}'
 		].join('\n');
 
-		const ftpPath = path.join(workspace.resource.fsPath, 'ftp.json');
+		const ftpPath = path.join(workspace.resource.fsPath, FTP_CONFIG_FILE);
 
         // Create as needed (the openTwoEditors function does that for us) and open in editor
 		return this.openTwoEditors(FtpSettingsInput.getInstance(this.instantiationService, this.configurationService),

@@ -86,6 +86,10 @@ import { IWindowConfiguration } from 'vs/workbench/electron-browser/common';
 import { FtpService } from 'vs/workbench/services/ftp/node/ftpService';
 import { IFtpService } from 'vs/platform/ftp/common/ftpService';
 
+import { FtpConfigurationService } from 'vs/workbench/services/ftp/node/ftpConfigurationService';
+import { IFtpConfigurationService} from 'vs/platform/ftp/common/ftpConfiguration';
+
+
 export const MessagesVisibleContext = new RawContextKey<boolean>('globalMessageVisible', false);
 export const EditorsVisibleContext = new RawContextKey<boolean>('editorIsOpen', false);
 export const NoEditorsVisibleContext: ContextKeyExpr = EditorsVisibleContext.toNegated();
@@ -457,6 +461,10 @@ export class Workbench implements IPartService {
 		// Ftp Service
 		const ftpService = this.instantiationService.createInstance(FtpService);
 		serviceCollection.set(IFtpService, ftpService);
+
+		// Ftp Configuration
+		const ftpConfigurationService = this.instantiationService.createInstance(FtpConfigurationService);
+		serviceCollection.set(IFtpConfigurationService, ftpConfigurationService);
 	}
 
 	private initSettings(): void {

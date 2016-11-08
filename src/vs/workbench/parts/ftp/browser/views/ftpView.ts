@@ -38,7 +38,8 @@ import { RawContextKey, IContextKeyService, IContextKey } from 'vs/platform/cont
 import { ResourceContextKey } from 'vs/platform/actions/common/resourceContextKey';
 import { FtpViewletState, FtpFileDataSource, ActionRunner, FtpAccessibilityProvider, FtpFileController, FtpFileRenderer } from 'vs/workbench/parts/ftp/browser/views/ftpViewer';
 
-import { IFtpService, IFtpConnectionInfo } from 'vs/platform/ftp/common/ftpService';
+import {IFtpConnectionInfo} from 'vs/workbench/parts/ftp/common/ftp';
+import { IFtpService } from 'vs/platform/ftp/common/ftpService';
 import { RefreshFtpSiteAction } from 'vs/workbench/parts/ftp/browser/ftpActions';
 
 export class FtpView extends CollapsibleViewletView {
@@ -56,6 +57,8 @@ export class FtpView extends CollapsibleViewletView {
 	private settings: any;
 	private autoReveal: boolean;
 
+	private configurationService: IFtpConfigurationService;
+
 	constructor(
 		viewletState: FtpViewletState,
 		actionRunner: IActionRunner,
@@ -72,8 +75,7 @@ export class FtpView extends CollapsibleViewletView {
 		@IFtpService private ftpService: IFtpService,
 		@IPartService private partService: IPartService,
 		@IKeybindingService keybindingService: IKeybindingService,
-		@IContextKeyService contextKeyService: IContextKeyService,
-		@IConfigurationService private configurationService: IConfigurationService
+		@IContextKeyService contextKeyService: IContextKeyService
 	) {
 		super(actionRunner, false, nls.localize('ftpSection', "FTP Server Section"), messageService, keybindingService, contextMenuService, headerSize);
 
@@ -134,19 +136,16 @@ export class FtpView extends CollapsibleViewletView {
 	public create(): TPromise<void> {
 
 		// Update configuration
-		/*const configuration = this.configurationService.getConfiguration<IFilesConfiguration>();
+		this.configurationService = this.instantiationService.createInstance(IFtpConfigurationService);
 		this.onConfigurationUpdated(configuration);
 
 		// Load and Fill Viewer
 		return this.doRefresh().then(() => {
 
-			// When the explorer viewer is loaded, listen to changes to the editor input
-			this.toDispose.push(this.editorGroupService.onEditorsChanged(() => this.onEditorsChanged()));
-
 			// Also handle configuration updates
 			this.toDispose.push(this.configurationService.onDidUpdateConfiguration(e => this.onConfigurationUpdated(e.config, true)));
-		});*/
-		return TPromise.as(null);
+		});
+		//return TPromise.as(null);
 	}
 
 	public focusBody(): void {

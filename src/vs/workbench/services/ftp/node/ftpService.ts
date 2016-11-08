@@ -11,7 +11,8 @@ import os = require('os');
 import crypto = require('crypto');
 import assert = require('assert');
 
-import { IFtpService, IRemoteFileStat, IFtpServiceOptions, IFtpConnectionInfo } from 'vs/platform/ftp/common/ftpService';
+import {IFtpConnectionInfo} from 'vs/workbench/parts/ftp/common/ftp';
+import { IFtpService, IRemoteFileStat } from 'vs/platform/ftp/common/ftpService';
 import { IWorkspaceContextService } from 'vs/platform/workspace/common/workspace';
 import { IWorkspace } from 'vs/platform/workspace/common/workspace';
 

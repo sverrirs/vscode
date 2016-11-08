@@ -47,7 +47,8 @@ import { Keybinding } from 'vs/base/common/keybinding';
 import { IKeyboardEvent } from 'vs/base/browser/keyboardEvent';
 import { IMenuService, IMenu, MenuId } from 'vs/platform/actions/common/actions';
 import { fillInActions } from 'vs/platform/actions/browser/menuItemActionItem';
-import {IFtpService, IFtpConnectionInfo} from 'vs/platform/ftp/common/ftpService';
+import {IFtpConnectionInfo} from 'vs/workbench/parts/ftp/common/ftp';
+import {IFtpService} from 'vs/platform/ftp/common/ftpService';
 import {FileViewletState} from 'vs/workbench/parts/files/browser/views/explorerViewer';
 
 
